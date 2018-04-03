@@ -3,17 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Just a blog</title>
+    <title>Technology | Just a blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta property="og:type" content="website">
-<meta property="og:title" content="Just a blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:title" content="Technology">
+<meta property="og:url" content="http://yoursite.com/technology/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-04-03T07:29:13.910Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Just a blog">
+<meta name="twitter:title" content="Technology">
     
 
     
@@ -132,76 +133,106 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">Home</em>
+    <em class="page-title-link" data-url="/technology/index.html">Technology</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="page-" class="article article-single article-type-page" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/04/03/JAVA-TCP协议下的Socket网络通讯/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/04/03/JAVA-TCP协议下的Socket网络通讯/header.jpg)" alt="JAVA----TCP协议下的Socket网络通讯" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/04/03/JAVA-TCP协议下的Socket网络通讯/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-04-03T06:20:20.000Z" itemprop="datePublished">2018-04-03</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/04/03/JAVA-TCP协议下的Socket网络通讯/">JAVA----TCP协议下的Socket网络通讯</a>
+        Technology
         </h1>
     
 
-        <p class="article-excerpt">
+            </header>
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
             
-TCP协议介绍TCP协议是一种信息传递可靠的协议，他依靠着三次握手的传输规则确保了连接不会发生错误。在这个协议之下，由于需要使用三次握手去确认目标，因此，确保了数据传输的可靠性。
-同时，利用TCP协议进行的数据包会有一个校验码在里面，若发现数据不准确，则接收方会要求发送方重新传输数据。
-Socket网络通信的实现在介绍了一些TCP协议的简单内容后，现在就利用JAVA去实现一个利用TCP协议实现的
-        </p>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/technology/index.html" data-id="cjfjo5imm000344v69s77r1c1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -361,11 +392,13 @@ Socket网络通信的实现在介绍了一些TCP协议的简单内容后，现�
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://yoursite.com/technology/index.html';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
