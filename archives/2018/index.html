@@ -105,6 +105,50 @@
 
   
   <h2 class="title">
+    <a href="/2018/05/14/Oracle-从创建数据库到表的建立/">
+      Oracle--从创建数据库到表的建立
+    </a>
+  </h2>
+  
+  <time>
+    May 14, 2018
+  </time>
+  <section class="content">
+	  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Oracle数据库是目前最流行的客户/数据库体系结构的数据库之一,他在建立数据库以及表的存储与建立都与MySQL有一些不同,现在,就从零开始建立数据库吧</p>
+<h3 id="建立数据库"><a href="#建立数据库" class="headerlink" title="建立数据库"></a>建立数据库</h3><p>首先是建立数据库,在安装了Oracle之后,会有一个数据库的配置程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Database Configuration Assistant</span><br></pre></td></tr></table></figure></p>
+<p>在这个配置程序里,一共有12步,完成之后只需要等待就可以建立数据库了.</p>
+<h3 id="建立表空间的准备"><a href="#建立表空间的准备" class="headerlink" title="建立表空间的准备"></a>建立表空间的准备</h3><p>建立表空间,首先要登陆到刚刚创建的数据库上去.<br>有两个方法可以登录,一个是利用Oracle自带的命令行界面,另一个则是使用一款专门用于打开Oracle数据库的图形化界面软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL plus //Oracle自带的命令行界面 </span><br><span class="line">PL\SQL developer //可以用于管理Oracle数据库的第三方软件</span><br></pre></td></tr></table></figure></p>
+<p>然后,进行登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username: system</span><br><span class="line">password: [自己设置的口令]</span><br></pre></td></tr></table></figure></p>
+<p>之后就可以进行表空间的建立了</p>
+<h3 id="建立表空间"><a href="#建立表空间" class="headerlink" title="建立表空间"></a>建立表空间</h3><p>首先,建立表空间之前要先知道什么是表空间</p>
+<p>Oracle的表空间属于Oracle中的存储结构，是一种用于存储数据库对象(如：数据文件)的逻辑空间，是Oracle中信息存储的最大逻辑单元，其下还包含有段、区、数据块等逻辑数据类型。表空间是在数据库中开辟的一个空间，用于存放数据库的对象，一个数据库可以由多个表空间组成。可以通过表空间来实现对Oracle的调优。（Oracle数据库独特的高级应用）</p>
+<p>可以认为表空间就是存放Oracle数据库当中表的地方</p>
+<p>那么我们现在就来建立表空间吧(若是在SQL Plus的话则可以直接进行命令行操作,要是在PL\SQL Developer 的话则是可以创建SQL窗口进行操作)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create tablespace [表空间的名称] </span><br><span class="line">datafile [表空间所存放的文件的地址] size [表空间大小]</span><br><span class="line">extend management local autoallocate</span><br><span class="line"></span><br><span class="line">//最后一句的指令意思为当需要扩大空间时,自行扩大</span><br><span class="line">//其中表空间的文件名要以.dbf结尾,如&apos;E:\test.dbf&apos;</span><br></pre></td></tr></table></figure></p>
+<p>这样,我们就已经建立成功表空间了,之后,就可以在表空间当中添加表了.</p>
+<p>当然,在添加表之前我们还有一个操作,就是为你创立的数据库建立用户,因为,system这个账号是全局的账号,因此,我们还需要一个用于管理某个表空间的管理员</p>
+<h3 id="创建账号"><a href="#创建账号" class="headerlink" title="创建账号"></a>创建账号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//创建账号</span><br><span class="line">create user [账号名称] identified by [账号密码] </span><br><span class="line">default tablespace [表空间名称] quota [可使用的大小] on users;</span><br><span class="line"></span><br><span class="line">//为账号分配权限</span><br><span class="line">grant all privilege to [账号名称]</span><br></pre></td></tr></table></figure>
+<p>由于是管理员账号,那自然是分配全部权限给他了</p>
+<h3 id="建立表"><a href="#建立表" class="headerlink" title="建立表"></a>建立表</h3><p>在创建完用户之后,就可以创建表了,首先还是要先登陆到你之前创建的用户上去</p>
+<p>然后,就可以按照SQL语句来建立数据库表了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//创建表</span><br><span class="line">create table student(</span><br><span class="line">    stu_id int not null primary key,</span><br><span class="line">    stu_name varchar(10) not null,</span><br><span class="line">    stu_age int</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">//建立外键</span><br><span class="line">alter student add foreign key (stu_name) reference teacher(teach_name)</span><br></pre></td></tr></table></figure></p>
+<p>有或者是想要建立带组合的主键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table teacher(</span><br><span class="line">    tea_id int not null,</span><br><span class="line">    tea_name varchar(10) not null,</span><br><span class="line">    teach_name varchar(10) not null,</span><br><span class="line">    tea_sex int,</span><br><span class="line"></span><br><span class="line">    constraint teacher primary key (tea_id,tea_name)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>等等的操作</p>
+
+
+    
+    
+    
+	  <div class="tags">
+      <a class="tag-link" href="/tags/Oracle/">Oracle</a>
+	  </div>
+    
+
+  </section>
+</article>
+  
+    <article class="post ">
+
+  
+  <h2 class="title">
     <a href="/2018/04/06/C-关于Timer的小优化/">
       C#--关于Timer的小优化
     </a>
